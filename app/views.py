@@ -215,5 +215,57 @@ def PremiumSport(request, premium, sport):
             news.save()
     return render(request, template_name)
 
+def PremiumHeadline(request, premium, headlines):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=headlines)
+    site = get_object_or_404(Site, name=premium)
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/headlines')
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
 
 
+def PremiumTopNews(request, premium, top_news):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=top_news)
+    site = get_object_or_404(Site, name=premium)
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/top-news')
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+def PremiumFashion(request, premium, fashion):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=fashion)
+    site = get_object_or_404(Site, name=premium)
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/entertainment/naija-fashion')
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+def PremiumHealth(request, premium, health):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=health)
+    site = get_object_or_404(Site, name=premium)
+    x,y,z,a,b = WebPremiumtime('    https://www.premiumtimesng.com/category/health/health-interviews')
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)

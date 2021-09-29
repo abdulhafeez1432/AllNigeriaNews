@@ -65,6 +65,11 @@ urlpatterns = [
     path('opinion/<str:punch>/<str:opinion>/', PunchOpinion, name='index'),
 
     path('sport/<str:premium>/<str:sport>', PremiumSport, name='index'),
+    path('top_news/<str:premium>/<str:top_news>', PremiumTopNews, name='index'),
+    path('headline/<str:premium>/<str:headline>', PremiumHeadline, name='index'),
+    path('fashion/<str:premium>/<str:fashion>', PremiumFashion, name='index'),
+    path('health/<str:premium>/<str:health>', PremiumHealth, name='index'),
+
 
 
 
