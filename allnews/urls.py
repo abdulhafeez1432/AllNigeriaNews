@@ -70,6 +70,19 @@ urlpatterns = [
     path('fashion/<str:premium>/<str:fashion>', PremiumFashion, name='index'),
     path('health/<str:premium>/<str:health>', PremiumHealth, name='index'),
 
+    path('news/<str:tribune>/<str:news>', TribuneNews, name='index'),
+    path('health/<str:tribune>/<str:health>', TribuneHealth, name='index'),
+    path('entertainment/<str:tribune>/<str:entertainment>', TribuneEntertainment, name='index'),
+    path('politics/<str:tribune>/<str:politics>', TribunePolitics, name='index'),
+    path('business/<str:tribune>/<str:business>', TribuneBusiness, name='index'),
+
+
+    path('news/<str:dailypost>/<str:news>', DailpostNews, name='index'),
+    path('metro/<str:dailypost>/<str:metro>', DailpostMetro, name='index'),
+    path('entertainment/<str:dailypost>/<str:entertainment>', DailpostEntertainment, name='index'),
+    path('politics/<str:dailypost>/<str:politics>', DailpostPolitics, name='index'),
+    path('sport/<str:dailypost>/<str:sport>', DailpostSport, name='index'),
+
 
 
 
