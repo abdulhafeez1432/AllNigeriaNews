@@ -64,31 +64,31 @@ urlpatterns = [
     path('columns/<str:punch>/<str:columns>/', PunchColumns, name='index'),
     path('opinion/<str:punch>/<str:opinion>/', PunchOpinion, name='index'),
 
-    path('sport/<str:premium>/<str:sport>', PremiumSport, name='index'),
-    path('top_news/<str:premium>/<str:top_news>', PremiumTopNews, name='index'),
-    path('headline/<str:premium>/<str:headline>', PremiumHeadline, name='index'),
-    path('fashion/<str:premium>/<str:fashion>', PremiumFashion, name='index'),
-    path('health/<str:premium>/<str:health>', PremiumHealth, name='index'),
+    path('sport/<str:premium>/<str:sport>/', PremiumSport, name='index'),
+    path('top_news/<str:premium>/<str:top_news>/', PremiumTopNews, name='index'),
+    path('headline/<str:premium>/<str:headline>/', PremiumHeadline, name='index'),
+    path('fashion/<str:premium>/<str:fashion>/', PremiumFashion, name='index'),
+    path('health/<str:premium>/<str:health>/', PremiumHealth, name='index'),
 
-    path('news/<str:tribune>/<str:news>', TribuneNews, name='index'),
-    path('health/<str:tribune>/<str:health>', TribuneHealth, name='index'),
-    path('entertainment/<str:tribune>/<str:entertainment>', TribuneEntertainment, name='index'),
-    path('politics/<str:tribune>/<str:politics>', TribunePolitics, name='index'),
-    path('business/<str:tribune>/<str:business>', TribuneBusiness, name='index'),
-
-
-    path('news/<str:dailypost>/<str:news>', DailpostNews, name='index'),
-    path('metro/<str:dailypost>/<str:metro>', DailpostMetro, name='index'),
-    path('entertainment/<str:dailypost>/<str:entertainment>', DailpostEntertainment, name='index'),
-    path('politics/<str:dailypost>/<str:politics>', DailpostPolitics, name='index'),
-    path('sport/<str:dailypost>/<str:sport>', DailpostSport, name='index'),
+    path('news/<str:tribune>/<str:news>/', TribuneNews, name='index'),
+    path('health/<str:tribune>/<str:health>/', TribuneHealth, name='index'),
+    path('entertainment/<str:tribune>/<str:entertainment>/', TribuneEntertainment, name='index'),
+    path('politics/<str:tribune>/<str:politics>/', TribunePolitics, name='index'),
+    path('business/<str:tribune>/<str:business>/', TribuneBusiness, name='index'),
 
 
-    path('news/<str:dailynation>/<str:news>', DailyNationNews, name='index'),
-    path('opinion/<str:dailynation>/<str:opinion>', DailyNationOpinion, name='index'),
-    path('entertainment/<str:dailynation>/<str:entertainment>', DailyNationEntertainment, name='index'),
-    path('politics/<str:dailynation>/<str:politics>', DailyNationPolitics, name='index'),
-    path('business/<str:dailynation>/<str:business>', DailyNationBusiness, name='index'),
+    path('news/<str:dailypost>/<str:news>/', DailpostNews, name='index'),
+    path('metro/<str:dailypost>/<str:metro>/', DailpostMetro, name='index'),
+    path('entertainment/<str:dailypost>/<str:entertainment>/', DailpostEntertainment, name='index'),
+    path('politics/<str:dailypost>/<str:politics>/', DailpostPolitics, name='index'),
+    path('sport/<str:dailypost>/<str:sport>/', DailpostSport, name='index'),
+
+
+    path('news/<str:dailynation>/<str:news>/', DailyNationNews, name='index'),
+    path('opinion/<str:dailynation>/<str:opinion>/', DailyNationOpinion, name='index'),
+    path('entertainment/<str:dailynation>/<str:entertainment>/', DailyNationEntertainment, name='index'),
+    path('politics/<str:dailynation>/<str:politics>/', DailyNationPolitics, name='index'),
+    path('business/<str:dailynation>/<str:business>/', DailyNationBusiness, name='index'),
 
 
 

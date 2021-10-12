@@ -8,6 +8,42 @@ from requests_html import HTMLSession
 
 session = HTMLSession()
 
+def WebPremiumtime(url):
+    url = requests.get(url).content
+    soup = bf(url, 'html.parser')
+    data = soup.findAll(class_= "jeg_post jeg_pl_lg_2 format-standard")
+    news_title = []
+    news_image_url = []
+    news_time = []
+    news_content = []
+    news_url = []
+
+
+    for details in data:
+        #Getting Post Title
+        title = details.find(class_='jeg_post_title').text
+        news_title.append(title)
+        #Getting Post Image
+        image_url = details.find('img').get('data-src')
+        news_image_url.append(image_url)
+        #Getting Post Date&Time
+        time = details.find(class_='jeg_meta_date').text
+        news_time.append(time)
+        #Getting Post Url
+        news_link = details.findAll('h3')
+        for link in news_link:
+            news_link_link = link.find('a').get('href')
+            news_url.append(news_link_link)
+        #Getting Post Content
+    for c in news_url:
+        c_url = requests.get(c).content
+        getting_content = bf(c_url, 'html.parser')
+        c_data = getting_content.find(class_="content-inner").text
+        news_content.append(c_data)
+            
+    return news_title, news_image_url, news_time, news_content, news_url
+     
+
 def WebPunch(url, name):
     #url = session.get(url).content
     url = requests.get(url).content
@@ -153,48 +189,8 @@ def PunchOpinion(request, punch, opinion):
             news.save()
     return render(request, 'index.html')
 
-    
 
 
-
-    
-
-
-def WebPremiumtime(url):
-    url = requests.get(url).content
-    soup = bf(url, 'html.parser')
-    data = soup.findAll(class_= "jeg_post jeg_pl_lg_2 format-standard")
-    news_title = []
-    news_image_url = []
-    news_time = []
-    news_content = []
-    news_url = []
-
-
-    for details in data:
-        #Getting Post Title
-        title = details.find(class_='jeg_post_title').text
-        news_title.append(title)
-        #Getting Post Image
-        image_url = details.find('img').get('data-src')
-        news_image_url.append(image_url)
-        #Getting Post Date&Time
-        time = details.find(class_='jeg_meta_date').text
-        news_time.append(time)
-        #Getting Post Url
-        news_link = details.findAll('h3')
-        for link in news_link:
-            news_link_link = link.find('a').get('href')
-            news_url.append(news_link_link)
-        #Getting Post Content
-        for c in news_url:
-            c_url = requests.get(c).content
-            getting_content = bf(c_url, 'html.parser')
-            c_data = getting_content.find(class_="content-inner").text
-            news_content.append(c_data)
-            
-    return news_title, news_image_url, news_time, news_content, news_url
-     
 
 def PremiumSport(request, premium, sport):
     template_name = "index.html"
@@ -264,44 +260,6 @@ def PremiumHealth(request, premium, health):
             news.save()
     return render(request, template_name)
 
-
-
-""" def WebGuardian(url):
-    url = requests.get(url).content
-    soup = bf(url, 'html.parser')
-    data = soup.findAll(class_= "cell")
-    news_title = []
-    news_image_url = []
-    news_time = []
-    news_content = []
-    news_url = []
-
-
-    for details in data:
-        #Getting Post Title
-        title = details.find(class_='headline').text
-        news_title.append(title)
-        #Getting Post Image
-        image_url = details.find('img').get('data-src')
-        news_image_url.append(image_url)
-        #Getting Post Date&Time
-        time = details.find(class_='jeg_meta_date').text
-        news_time.append(time)
-        #Getting Post Url
-        news_link = details.findAll('h3')
-        for link in news_link:
-            news_link_link = link.find('a').get('href')
-            news_url.append(news_link_link)
-        #Getting Post Content
-        for c in news_url:
-            c_url = requests.get(c).content
-            getting_content = bf(c_url, 'html.parser')
-            c_data = getting_content.find(class_="content-inner").text
-            news_content.append(c_data)
-            
-    return news_title, news_image_url, news_time, news_content, news_url
-     
- """
 def WebTribune(url):
     url = requests.get(url).content
     soup = bf(url, 'html.parser')
