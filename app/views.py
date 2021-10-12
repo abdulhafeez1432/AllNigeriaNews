@@ -9,47 +9,41 @@ from requests_html import HTMLSession
 session = HTMLSession()
 
 def WebPunch(url, name):
-    url = session.get('https://punchng.com/topics/sports/').content
-    #url = requests.get(url).content
-    #print(url)
+    #url = session.get(url).content
+    url = requests.get(url).content
     soup = bf(url, 'html.parser')
-    #print(soup.prettify())
-    #print(list(soup.children))
-    #print(soup.find_all('p'))
-    #data = soup.findAll(class_= name)
     data = soup.findAll(class_=name)
-    print(len(data))
     news_title = []
     news_image_url = []
     news_time = []
-    news_news = []
+    news_content = []
     news_url = []
-    #.find('img',attrs={'class':'c-image__original'}).get('alt').strip()
    
 
     for details in data:
-        title = details.find(class_='entry-title').text
-        news_title.append(title)
-        #content.find('div', attrs ={'class':'m-entry-featured-image'}).find('img',attrs={'class':'entry-thumbnail'}).get('src').strip()
-        #image_url = details.find('img',attrs={'class':'entry-thumbnail'})
-        #image_url = details.find(class_='img-lazy-load').get('data-src')
-        #image_url = details.find('div',class_ ='entry-thumbnail-wrapper')
-        time = details.find(class_='js-update-timestamp').get('data-default-time')
+        #Getting Post Title
+        t = details.find('h3', class_="entry-title").text
+        news_title.append(t)
+
+        #Getting Post Image
+        image_url = details.find('img').get('data-src')
+        news_image_url.append(image_url)
+
+        #Getting Post Url
+        news_link = details.find('a').get('href')
+        news_url.append(news_link)
+
+        #Getting Post Date & Time
+        time = details.find(class_="meta-time").text
         news_time.append(time)
-        detail = details.find('a').get('href')
-        news_url.append(detail)
-        news_details = session.get(detail)
-        content = bf(news_details.text, 'html.parser')
-        news = content.find('div', class_='entry-content').text
-        #image_url = content.find('class', class_='entry-featured-image').find('img', class_='entry-thumbnail').get('src').strip()
-        #image_url = content.find('picture', attrs={'entry-featured-image'}).find('img').attrs['src']
-        a = content.findAll('picture', attrs = {'class': 'entry-featured-image'})
-        for i in a:
-            image_url = i.img['src']
-            news_image_url.append(image_url)
-        print(news_image_url)
-        news_news.append(news)
-    return news_title, news_image_url, news_time, news_news, news_url
+
+        #Getting Post Content
+        for c in news_url:
+            c_url = requests.get(c).content
+            getting_content = bf(c_url, 'html.parser')
+            c_data = getting_content.find(class_="entry-content").text
+            news_content.append(c_data)
+    return news_title, news_image_url, news_time, news_content, news_url
     #return news_title, news_url
 
 
@@ -340,7 +334,7 @@ def WebTribune(url):
             getting_content = bf(c_url, 'html.parser')
             c_data = getting_content.find(class_="entry-content clearfix single-post-content").text
             news_content.append(c_data)
-            time = getting_content.find(class_='time').text
+            time = getting_content.find('time').text
             news_time.append(time)
     return news_title, news_image_url, news_time, news_content, news_url
 
@@ -570,6 +564,63 @@ def DailyNationNews(request, dailynation, news):
     category = get_object_or_404(Category, name=news)
     site = get_object_or_404(Site, name=dailynation)
     x,y,z,a,b = WebDailyNation("https://dailynigerian.com/category/nation/")
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+def DailyNationPolitics(request, dailynation, politics):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=politics)
+    site = get_object_or_404(Site, name=dailynation)
+    x,y,z,a,b = WebDailyNation("https://dailynigerian.com/category/politics/")
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+def DailyNationEntertainment(request, dailynation, entertainment):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=entertainment)
+    site = get_object_or_404(Site, name=dailynation)
+    x,y,z,a,b = WebDailyNation("https://dailynigerian.com/category/entertainment/")
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+def DailyNationBusiness(request, dailynation, business):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=business)
+    site = get_object_or_404(Site, name=dailynation)
+    x,y,z,a,b = WebDailyNation("https://dailynigerian.com/category/business/")
+    for x, y, z, a, b in zip(x,y,z,a,b):
+        if NewsDetails.objects.filter(url=b).exists():
+            pass
+        else:
+            news = NewsDetails(title=x, image_url=y, content=a, category=category, site=site, url=b, uploaded=z)
+            news.save()
+    return render(request, template_name)
+
+
+
+def DailyNationOpinion(request, dailynation, opinion):
+    template_name = "index.html"
+    category = get_object_or_404(Category, name=opinion)
+    site = get_object_or_404(Site, name=dailynation)
+    x,y,z,a,b = WebDailyNation("https://dailynigerian.com/category/opinion/")
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass

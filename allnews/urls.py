@@ -84,6 +84,11 @@ urlpatterns = [
     path('sport/<str:dailypost>/<str:sport>', DailpostSport, name='index'),
 
 
+    path('news/<str:dailynation>/<str:news>', DailyNationNews, name='index'),
+    path('opinion/<str:dailynation>/<str:opinion>', DailyNationOpinion, name='index'),
+    path('entertainment/<str:dailynation>/<str:entertainment>', DailyNationEntertainment, name='index'),
+    path('politics/<str:dailynation>/<str:politics>', DailyNationPolitics, name='index'),
+    path('business/<str:dailynation>/<str:business>', DailyNationBusiness, name='index'),
 
 
 
