@@ -99,7 +99,7 @@ def PunchSport(request, punch, sport):
 def PunchNews(request, punch, news):
     category = get_object_or_404(Category, name=news)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/news/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/news/', 'grid-item')
     print(x,y,z,a,b)
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
@@ -113,7 +113,7 @@ def PunchNews(request, punch, news):
 def PunchMetro(request, punch, metro):
     category = get_object_or_404(Category, name=metro)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/metro-plus/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/metro-plus/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -127,7 +127,7 @@ def PunchMetro(request, punch, metro):
 def PunchPolitics(request, punch, politics):
     category = get_object_or_404(Category, name=politics)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/politics/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/politics/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -140,7 +140,7 @@ def PunchPolitics(request, punch, politics):
 def PunchBusiness(request, punch, business):
     category = get_object_or_404(Category, name=business)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/business/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/business/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -154,7 +154,7 @@ def PunchBusiness(request, punch, business):
 def PunchEditorial(request, punch, editorial):
     category = get_object_or_404(Category, name=editorial)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/editorial/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/editorial/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -167,7 +167,7 @@ def PunchEditorial(request, punch, editorial):
 def PunchColumns(request, punch, columns):
     category = get_object_or_404(Category, name=columns)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/columns/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/columns/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -180,7 +180,7 @@ def PunchColumns(request, punch, columns):
 def PunchOpinion(request, punch, opinion):
     category = get_object_or_404(Category, name=opinion)
     site = get_object_or_404(Site, name=punch)
-    x,y,z,a,b = WebPunch('https://punchng.com/topics/opinion/', 'items')
+    x,y,z,a,b = WebPunch('https://punchng.com/topics/opinion/', 'grid-item')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -196,7 +196,7 @@ def PremiumSport(request, premium, sport):
     template_name = "index.html"
     category = get_object_or_404(Category, name=sport)
     site = get_object_or_404(Site, name=premium)
-    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/sports/football')
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/sports/football/')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -209,7 +209,7 @@ def PremiumHeadline(request, premium, headlines):
     template_name = "index.html"
     category = get_object_or_404(Category, name=headlines)
     site = get_object_or_404(Site, name=premium)
-    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/headlines')
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/headlines/')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -223,7 +223,7 @@ def PremiumTopNews(request, premium, top_news):
     template_name = "index.html"
     category = get_object_or_404(Category, name=top_news)
     site = get_object_or_404(Site, name=premium)
-    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/top-news')
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/news/top-news/')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -237,7 +237,7 @@ def PremiumFashion(request, premium, fashion):
     template_name = "index.html"
     category = get_object_or_404(Category, name=fashion)
     site = get_object_or_404(Site, name=premium)
-    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/entertainment/naija-fashion')
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/entertainment/naija-fashion/')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
@@ -251,7 +251,7 @@ def PremiumHealth(request, premium, health):
     template_name = "index.html"
     category = get_object_or_404(Category, name=health)
     site = get_object_or_404(Site, name=premium)
-    x,y,z,a,b = WebPremiumtime('    https://www.premiumtimesng.com/category/health/health-interviews')
+    x,y,z,a,b = WebPremiumtime('https://www.premiumtimesng.com/category/health/health-interviews/')
     for x, y, z, a, b in zip(x,y,z,a,b):
         if NewsDetails.objects.filter(url=b).exists():
             pass
